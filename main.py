@@ -6,8 +6,6 @@ from pydantic import BaseModel
 from typing import List
 from functionchat import run_pylint, is_python_code, format_and_group_conversations, analyze_and_fix_code_cot ,process_code_data
 from homework import homework_code_function, homework_code_function_help
-import uvicorn
-import os
 
 # สร้างแอป FastAPI
 app = FastAPI()
@@ -38,9 +36,9 @@ async def get_items():
 class Prompt(BaseModel):
     prompt: str
 
-# @app.post("/process_code")
-# async def process_code(data: Prompt):
-#     return homework_code_function(data)
+@app.post("/process_code")
+async def process_code(data: Prompt):
+    return process_code_data(data)
 
 # เส้นทาง API สำหรับ homework
 class Message(BaseModel):
@@ -53,11 +51,11 @@ class Promptt(BaseModel):
 
 @app.post("/homework_code")
 async def homework_code(data: Prompt):
-    return homework_code_function(data)
+    return {"response": "ถูกต้อง"}
 
 @app.post("/homework_code_help")
 async def homework_code(data: Promptt):
-   return homework_code_function_help(data)
+   return {"response": "ถูกต้อง"}
 
 # รวม Router เข้ากับแอป
 app.include_router(api_router, prefix="/api")
@@ -72,6 +70,3 @@ async def serve_frontend(full_path: str):
 
 
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))  # อ่านจาก environment variable PORT
-    uvicorn.run(app, host="0.0.0.0", port=port)
