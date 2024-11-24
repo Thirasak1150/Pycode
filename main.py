@@ -51,11 +51,11 @@ class Promptt(BaseModel):
 
 @app.post("/homework_code")
 async def homework_code(data: Prompt):
-    return homework_code_function(data)
+    return {"response": "ถูกต้อง"}
 
 @app.post("/homework_code_help")
 async def homework_code(data: Promptt):
-   return homework_code_function_help(data)
+   return {"response": "ถูกต้อง"}
 
 # รวม Router เข้ากับแอป
 app.include_router(api_router, prefix="/api")
