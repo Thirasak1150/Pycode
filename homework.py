@@ -13,9 +13,11 @@ filePath = 'codehomework.py'
 pyresult = ''
 import os
 templatecheck = 1
-client = OpenAI(
-    api_key= os.getenv("OPENAI_API_KEY")
-)
+api_key = os.getenv("OPENAI_API_KEY")
+
+# สร้าง instance ของ OpenAI client ด้วย API Key
+client = OpenAI(api_key=api_key)
+
 
 memory = ConversationBufferMemory(return_messages=True)
 def homework_code_function(data):
