@@ -51,11 +51,11 @@ class Promptt(BaseModel):
 
 @app.post("/homework_code")
 async def homework_code(data: Prompt):
-    return {"response": "ถูกต้อง"}
+    return homework_code_function(data)
 
 @app.post("/homework_code_help")
 async def homework_code(data: Promptt):
-   return {"response": "ถูกต้อง"}
+   return homework_code_function_help(data)
 
 # รวม Router เข้ากับแอป
 app.include_router(api_router, prefix="/api")
@@ -67,6 +67,3 @@ app.mount("/assets", StaticFiles(directory="frontend/assets"))
 @app.get("/{full_path:path}")  # Match ทุกเส้นทางที่ไม่ใช่ API
 async def serve_frontend(full_path: str):
     return FileResponse("frontend/index.html")
-
-
-
