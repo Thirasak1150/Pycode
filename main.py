@@ -38,9 +38,9 @@ async def get_items():
 class Prompt(BaseModel):
     prompt: str
 
-@app.post("/process_code")
-async def process_code(data: Prompt):
-    return homework_code_function(data)
+# @app.post("/process_code")
+# async def process_code(data: Prompt):
+#     return homework_code_function(data)
 
 # เส้นทาง API สำหรับ homework
 class Message(BaseModel):

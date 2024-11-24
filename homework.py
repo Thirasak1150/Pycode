@@ -282,4 +282,4 @@ def analyze_and_fix_code_cot2(code_content, memory,homework ):
             {"role": "user", "content": prompt_text},
         ],
     )
-    return {"response": chat_completion.choices[0].message.content}
+    return {"response": response.choices[0].message.content}
